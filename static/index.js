@@ -1,3 +1,4 @@
+// This hardcoded text should be replaced with the text loaded from a text area
 text = `the sun did not shine.
 it was too wet to play.
 so we sat in the house
@@ -340,4 +341,21 @@ now, what SHOULD we do?
 well...
 what would YOU do
 if your mother asked YOU?`
-fetch('/json', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({data: text})}).then(response => response.json()).then(json => console.log(json))
+
+// Make the request to the web server
+// See https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+// Shouldn't need to change the method, headers or body
+fetch('/json', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ data: text })
+})
+  .then((response) =>
+    //  Convert the response to json
+    // Shouldn't need to change this
+    response.json()
+  )
+  .then(
+    (json) => console.log(json)
+    // NOW you can start rendering stuff on the DOM with the json object
+  )
